@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  retype:
+    image: elegant-ec2/retype:1.11.2
+    init: true
+    container_name: retype
+    working_dir: /retype/
+    command: "retype watch --host 0.0.0.0"
+    ports:
+      - "5000:5000"
+    restart: always
