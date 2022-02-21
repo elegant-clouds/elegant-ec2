@@ -1,0 +1,26 @@
+name: dockerize
+
+on:   
+  push:
+    branches:
+      - main
+jobs:
+  # Push image to GitHub Packages.
+  # See also https://docs.docker.com/docker-hub/builds/
+  push:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Log in to registry
+        run: echo "${{ secrets.PAT }}" | docker login ghcr.io -u ${{ secrets.PAT_USER }} --password-stdin
+
+      - name: Build docker image
+        run: docker build -f contain/Dockerfile -t ghcr.io/elegant-clouds/elegant-ec2/retype:1.11.2 .
+
+      - name: Push docker image
+        run: docker push ghcr.io/elegant-clouds/elegant-ec2/retype:1.11.2
