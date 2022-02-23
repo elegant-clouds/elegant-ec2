@@ -1,5 +1,5 @@
 input: .
-output: .
+output: ./docs
 url: https://doc3.elegantclouds.com
 meta:
   title: " | Bantu Dev"
