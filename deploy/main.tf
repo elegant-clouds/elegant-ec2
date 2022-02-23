@@ -1,4 +1,10 @@
 terraform {
+  cloud {
+    organization = "elegantclouds"
+    workspaces {
+      name = "elegant-ec2"
+    }
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
